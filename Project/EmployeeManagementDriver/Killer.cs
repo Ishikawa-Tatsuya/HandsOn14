@@ -29,6 +29,7 @@ namespace EmployeeManagementDriver
                         _kill = true;
                         break;
                     }
+                    Task.Delay(10);
                 }
             });
         }
