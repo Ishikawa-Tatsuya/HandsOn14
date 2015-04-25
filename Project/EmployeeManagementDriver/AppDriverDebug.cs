@@ -14,7 +14,7 @@ namespace EmployeeManagementDriver
         {
             Process = GetDebugProcess();
         }
-        public void Release(bool isSuccess) { }
+        public void Release(bool isContinue) { }
         public void SetTimeup(int time) { }
         public void EndProcess() { }
 

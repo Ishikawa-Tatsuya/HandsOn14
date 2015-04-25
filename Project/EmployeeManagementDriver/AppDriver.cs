@@ -31,10 +31,10 @@ namespace EmployeeManagementDriver
             _core.SetTimeup(time);
         }
 
-        public void Release(bool isSuccess)
+        public void Release(bool isContinue)
         {
             _app.Dispose();
-            _core.Release(isSuccess);
+            _core.Release(isContinue);
         }
 
         private void InitApp()

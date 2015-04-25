@@ -16,9 +16,9 @@ namespace EmployeeManagementDriver
             _killer = new Killer(1000 * 60 * 5, Process.Id);
         }
 
-        public void Release(bool isSuccess)
+        public void Release(bool isContinue)
         {
-            if (isSuccess)
+            if (isContinue)
             {
                 _killer.Finish();
             }
