@@ -7,6 +7,7 @@ using Codeer.Friendly.Windows.NativeStandardControls;
 using System.Diagnostics;
 using System.Collections.Generic;
 using EmployeeManagement;
+using System.Linq;
 
 namespace TestScenario
 {
@@ -14,14 +15,14 @@ namespace TestScenario
     public class AdjustDriver
     {
         static AppDriver _app;
-
-        static TestContext _context;
+        static Dictionary<string, bool> _tests;
+        public TestContext TestContext { get; set; }
 
         [ClassInitialize]
         public static void ClassInitialize(TestContext c)
         {
             _app = new AppDriver();
-            _context = c;
+            _tests = typeof(AdjustDriver).GetMethods().Where(e => 0 < e.GetCustomAttributes(typeof(TestMethodAttribute), true).Length).ToDictionary(e => e.Name, e => true);
         }
 
         [ClassCleanup]
@@ -39,7 +40,8 @@ namespace TestScenario
         [TestCleanup]
         public void TestCleanup()
         {
-            _app.Release(_context.CurrentTestOutcome == UnitTestOutcome.Passed);
+            _tests.Remove(TestContext.TestName);
+            _app.Release(TestContext.CurrentTestOutcome == UnitTestOutcome.Passed && 0 < _tests.Count);
         }
 
         [TestMethod]

@@ -37,6 +37,11 @@ namespace EmployeeManagementDriver
         {
             try
             {
+                _killer.Finish();
+            }
+            catch { }
+            try
+            {
                 Process.Kill();
             }
             catch { }
